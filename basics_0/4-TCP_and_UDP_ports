@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Display listening sockets with numeric addresses and PID/program information.
+netstat -lpn
