@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Map localhost to 127.0.0.2 and facebook.com to 8.8.8.8 in /etc/hosts.
+set -e
+
+hosts_tmp=$(mktemp)
+trap 'rm -f "$hosts_tmp"' EXIT
+
+awk '
+/^[[:space:]]*(#|$)/ { print; next }
+{
+    entry = $1
+    aliases = 0
+    changed = 0
+    comment = ""
+    for (i = 2; i <= NF; i++) {
+        if (substr($i, 1, 1) == "#") {
+            comment = substr($0, index($0, "#"))
+            break
+        }
+        name = tolower($i)
+        if (name == "localhost" || name == "facebook.com") {
+            changed = 1
+        } else {
+            entry = entry "\t" $i
+            aliases++
+        }
+    }
+    if (!changed) print
+    else if (aliases) print entry (comment == "" ? "" : "\t" comment)
+    else if (comment != "") print comment
+}
+END {
+    print "127.0.0.2\tlocalhost"
+    print "8.8.8.8\tfacebook.com"
+}
+' /etc/hosts > "$hosts_tmp"
+
+cat "$hosts_tmp" > /etc/hosts

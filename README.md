@@ -9,24 +9,30 @@ diagnóstico de Linux.
 | Directorio | Contenido | Documentación |
 | --- | --- | --- |
 | [basics_0](./basics_0/) | Modelo OSI, tipos de red, direcciones MAC e IP, TCP, UDP, sockets y conectividad. | [README del módulo](./basics_0/README.md) |
+| [basics_1](./basics_1/) | Tarea 0: resolución local de nombres mediante `/etc/hosts`. | [README del módulo](./basics_1/README.md) |
 
 ## Estructura
 
 ```text
 holbertonschool-network/
 ├── README.md
-└── basics_0/
+├── basics_0/
+│   ├── README.md
+│   ├── 0-OSI_model
+│   ├── 1-types_of_network
+│   ├── 2-MAC_and_IP_address
+│   ├── 3-UDP_and_TCP
+│   ├── 4-TCP_and_UDP_ports
+│   └── 5-is_the_host_on_the_network
+└── basics_1/
     ├── README.md
-    ├── 0-OSI_model
-    ├── 1-types_of_network
-    ├── 2-MAC_and_IP_address
-    ├── 3-UDP_and_TCP
-    ├── 4-TCP_and_UDP_ports
-    └── 5-is_the_host_on_the_network
+    └── 0-change_your_home_IP
 ```
 
-Los archivos 0–3 contienen las respuestas numéricas del cuestionario. Los
-archivos 4 y 5 son scripts Bash ejecutables, sin extensión.
+En `basics_0`, los archivos 0–3 contienen las respuestas numéricas del
+cuestionario y los archivos 4 y 5 son scripts Bash ejecutables, sin extensión.
+El script `basics_1/0-change_your_home_IP` configura la resolución local de
+nombres y tiene sus propias instrucciones de uso.
 
 ## Objetivos de aprendizaje
 
@@ -35,6 +41,7 @@ archivos 4 y 5 son scripts Bash ejecutables, sin extensión.
 - Reconocer las características de TCP y UDP.
 - Consultar sockets en escucha y comprobar respuestas ICMP con herramientas
   de Linux.
+- Configurar asociaciones entre nombres e IP en un entorno de prácticas.
 
 ## Primeros pasos
 
@@ -55,6 +62,10 @@ cd holbertonschool-network/basics_0
 ```
 
 ## Uso
+
+Para la tarea **Change your home IP**, consulta las instrucciones de
+[basics_1](./basics_1/README.md). Ese ejercicio modifica `/etc/hosts` y se
+ejecuta en un entorno de prácticas aislado.
 
 Desde `basics_0/`, consulta los sockets en escucha y su información de proceso:
 
