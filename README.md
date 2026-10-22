@@ -49,13 +49,13 @@ muestran las IPv4 activas y reciben texto por TCP en el puerto 98 de localhost.
 ## Primeros pasos
 
 El entorno objetivo es **Ubuntu 22.04** con Bash y Git. Instala `net-tools`
-para disponer de `netstat`, `iputils-ping` para utilizar `ping`, `iproute2`
-para consultar direcciones, `netcat-openbsd` para escuchar conexiones TCP y
+para disponer de `netstat` e `ifconfig`, `iputils-ping` para utilizar `ping`,
+`netcat-openbsd` para escuchar conexiones TCP y
 `shellcheck` para analizar los scripts:
 
 ```bash
 sudo apt-get update
-sudo apt-get install net-tools iputils-ping iproute2 netcat-openbsd shellcheck
+sudo apt-get install net-tools iputils-ping netcat-openbsd shellcheck
 ```
 
 Clona el repositorio y entra en el módulo:

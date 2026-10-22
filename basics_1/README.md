@@ -18,14 +18,15 @@ explicativo en la segunda línea y se registran en Git como ejecutables
 ## Requisitos
 
 - Ubuntu con Bash, awk y las herramientas habituales de coreutils.
-- `iproute2` para el comando `ip` y `netcat-openbsd` para `nc`.
+- `net-tools` para `ifconfig`, GNU grep con soporte PCRE (`-P`) y
+  `netcat-openbsd` para `nc`.
 - Permiso de escritura sobre `/etc/hosts` para la tarea 0 y permiso para
   escuchar en el puerto 98 para la tarea 2.
 - ShellCheck para el análisis estático y `getent` para comprobar la resolución.
 
 ```bash
 sudo apt-get update
-sudo apt-get install iproute2 netcat-openbsd shellcheck
+sudo apt-get install net-tools grep netcat-openbsd shellcheck
 ```
 
 Ejecuta los ejemplos siguientes desde `basics_1/`.
@@ -67,16 +68,16 @@ El formato de las entradas y los alias está descrito en el
 Ejemplo de salida:
 
 ```text
-127.0.0.1$
 10.0.2.15$
+127.0.0.1$
 ```
 
-Las direcciones y su orden dependen del equipo. `ip -o -4 addr show up`
-selecciona las direcciones IPv4 de interfaces habilitadas; awk elimina el
-prefijo de red y muestra una dirección por línea. Incluye loopback y las
-direcciones secundarias. No muestra IPv6 ni direcciones de interfaces
-deshabilitadas. Los signos `$` del ejemplo los añade `cat -e` para señalar
-el final de cada línea.
+Las direcciones dependen del equipo. El script extrae las IPv4 de las
+líneas `inet` de `ifconfig`, conservando su orden y mostrando una dirección
+por línea. Así coincide con el orden usado por el checker del ejercicio.
+Incluye loopback y excluye las líneas IPv6 (`inet6`); `ifconfig` sin `-a`
+omite las interfaces deshabilitadas. Los signos `$` del ejemplo los añade
+`cat -e` para señalar el final de cada línea.
 
 Cambiar la resolución del nombre `localhost` en la tarea 0 no cambia las
 direcciones asignadas a la interfaz loopback.
@@ -124,8 +125,9 @@ de montajes o red aislados:
 
 - Tarea 0: `getent` devolvió las dos direcciones exigidas; se conservaron los
   demás alias y comentarios, y la ejecución repetida no añadió duplicados.
-- Tarea 1: mostró exactamente las IPv4 de loopback y de una interfaz activa
-  con dos direcciones. Excluyó IPv6 y una interfaz deshabilitada.
+- Tarea 1: la salida coincidió byte por byte con el comando de referencia
+  del checker, incluido el orden. En una red aislada mostró primero la IPv4
+  de `eth0` y después la de loopback; excluyó IPv6 y una interfaz deshabilitada.
 - Tarea 2: recibió exactamente `Hello world` y `test`, en líneas separadas,
   por conexiones TCP reales al puerto 98. Se comprobó que escuchaba solo
   en la dirección de localhost, tanto con `127.0.0.1` como con `127.0.0.2`.
