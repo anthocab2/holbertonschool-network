@@ -9,7 +9,7 @@ diagnóstico de Linux.
 | Directorio | Contenido | Documentación |
 | --- | --- | --- |
 | [basics_0](./basics_0/) | Modelo OSI, tipos de red, direcciones MAC e IP, TCP, UDP, sockets y conectividad. | [README del módulo](./basics_0/README.md) |
-| [basics_1](./basics_1/) | Tarea 0: resolución local de nombres mediante `/etc/hosts`. | [README del módulo](./basics_1/README.md) |
+| [basics_1](./basics_1/) | Resolución local de nombres, direcciones IPv4 activas y escucha TCP en localhost. | [README del módulo](./basics_1/README.md) |
 
 ## Estructura
 
@@ -26,13 +26,15 @@ holbertonschool-network/
 │   └── 5-is_the_host_on_the_network
 └── basics_1/
     ├── README.md
-    └── 0-change_your_home_IP
+    ├── 0-change_your_home_IP
+    ├── 1-show_attached_IPs
+    └── 2-port_listening_on_localhost
 ```
 
 En `basics_0`, los archivos 0–3 contienen las respuestas numéricas del
 cuestionario y los archivos 4 y 5 son scripts Bash ejecutables, sin extensión.
-El script `basics_1/0-change_your_home_IP` configura la resolución local de
-nombres y tiene sus propias instrucciones de uso.
+En `basics_1`, los tres scripts configuran la resolución local de nombres,
+muestran las IPv4 activas y reciben texto por TCP en el puerto 98 de localhost.
 
 ## Objetivos de aprendizaje
 
@@ -42,16 +44,18 @@ nombres y tiene sus propias instrucciones de uso.
 - Consultar sockets en escucha y comprobar respuestas ICMP con herramientas
   de Linux.
 - Configurar asociaciones entre nombres e IP en un entorno de prácticas.
+- Enumerar las direcciones IPv4 activas y recibir texto mediante netcat.
 
 ## Primeros pasos
 
 El entorno objetivo es **Ubuntu 22.04** con Bash y Git. Instala `net-tools`
-para disponer de `netstat`, `iputils-ping` para utilizar `ping` y `shellcheck`
-para analizar los scripts:
+para disponer de `netstat`, `iputils-ping` para utilizar `ping`, `iproute2`
+para consultar direcciones, `netcat-openbsd` para escuchar conexiones TCP y
+`shellcheck` para analizar los scripts:
 
 ```bash
 sudo apt-get update
-sudo apt-get install net-tools iputils-ping shellcheck
+sudo apt-get install net-tools iputils-ping iproute2 netcat-openbsd shellcheck
 ```
 
 Clona el repositorio y entra en el módulo:
@@ -63,9 +67,10 @@ cd holbertonschool-network/basics_0
 
 ## Uso
 
-Para la tarea **Change your home IP**, consulta las instrucciones de
-[basics_1](./basics_1/README.md). Ese ejercicio modifica `/etc/hosts` y se
-ejecuta en un entorno de prácticas aislado.
+Para las tareas **Change your home IP**, **Show attached IPs** y **Port
+listening on localhost**, consulta las instrucciones de
+[basics_1](./basics_1/README.md). La tarea 0 modifica `/etc/hosts` y se ejecuta
+en un entorno de prácticas aislado.
 
 Desde `basics_0/`, consulta los sockets en escucha y su información de proceso:
 
@@ -108,8 +113,13 @@ La validación local incluyó sintaxis Bash, ShellCheck, ejecución real de
 recibidos en loopback. Se realizó en **Ubuntu 24.04.4 bajo WSL2**; Ubuntu 22.04
 es el entorno objetivo y no se ejecutó el checker privado de Holberton.
 
-Consulta el [README de basics_0](./basics_0/README.md) para ver el detalle de
-los seis ejercicios, los requisitos y los resultados de las comprobaciones.
+En `basics_1` también se comprobaron la resolución de nombres, la salida de
+IPv4 activas y la recepción exacta de texto en el puerto 98, con localhost
+resuelto a `127.0.0.1` y a `127.0.0.2`. Estas pruebas se realizaron en entornos
+aislados, sin cambiar los archivos de resolución ni las interfaces del equipo.
+
+Consulta los README de [basics_0](./basics_0/README.md) y
+[basics_1](./basics_1/README.md) para ver los ejercicios y sus comprobaciones.
 
 ## Mantenimiento
 
