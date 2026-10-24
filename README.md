@@ -10,6 +10,7 @@ diagnóstico de Linux.
 | --- | --- | --- |
 | [basics_0](./basics_0/) | Modelo OSI, tipos de red, direcciones MAC e IP, TCP, UDP, sockets y conectividad. | [README del módulo](./basics_0/README.md) |
 | [basics_1](./basics_1/) | Resolución local de nombres, direcciones IPv4 activas y escucha TCP en localhost. | [README del módulo](./basics_1/README.md) |
+| [What happens when...](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/) | Artículo en inglés sobre DNS, TCP/IP, seguridad y servidores al visitar Google. | [README del módulo](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md) |
 
 ## Estructura
 
@@ -24,11 +25,15 @@ holbertonschool-network/
 │   ├── 3-UDP_and_TCP
 │   ├── 4-TCP_and_UDP_ports
 │   └── 5-is_the_host_on_the_network
-└── basics_1/
+├── basics_1/
+│   ├── README.md
+│   ├── 0-change_your_home_IP
+│   ├── 1-show_attached_IPs
+│   └── 2-port_listening_on_localhost
+└── what_happens_when_your_type_google_com_in_your_browser_and_press_enter/
     ├── README.md
-    ├── 0-change_your_home_IP
-    ├── 1-show_attached_IPs
-    └── 2-port_listening_on_localhost
+    ├── 0-blog_post
+    └── blog_post.md
 ```
 
 En `basics_0`, los archivos 0–3 contienen las respuestas numéricas del
@@ -120,6 +125,15 @@ aislados, sin cambiar los archivos de resolución ni las interfaces del equipo.
 
 Consulta los README de [basics_0](./basics_0/README.md) y
 [basics_1](./basics_1/README.md) para ver los ejercicios y sus comprobaciones.
+
+## What happens when you visit Google?
+
+El [artículo en inglés](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/blog_post.md)
+explica los ocho temas requeridos para el proyecto y está
+[publicado en Medium](https://medium.com/@anthonycaban1010/what-happens-when-you-type-https-www-google-com-in-your-browser-and-press-enter-080383ce98f8).
+El archivo `0-blog_post` contiene su enlace público. Consulta el
+[README del módulo](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md)
+para los pasos de entrega.
 
 ## Mantenimiento
 
