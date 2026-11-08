@@ -36,8 +36,8 @@ answer file and article source; the submitted blog URL points to Medium.
 
 ## Task 1: infrastructure diagram
 
-**Status: BLOCKED — the PNG and SVG are published on GitHub and the direct
-PNG URL is verified. Insertion into the public Medium article remains pending.**
+**Status: PASS — the PNG and SVG are published on GitHub, the direct PNG URL
+is verified, and the image appears in the published Medium article.**
 
 ![Illustrative DNS and HTTPS infrastructure, showing a separate DNS path, TLS termination at a load balancer, backend connections, and the response returning to the browser.](./diagram/web-request-flow.png)
 
@@ -83,22 +83,27 @@ local PNG, and the browser decoded it at 3200 × 3520 pixels.
 
 The PNG and SVG were published in
 [commit 5b6de64](https://github.com/anthocab2/holbertonschool-network/commit/5b6de64e3c179b46cbdc1bc4fb7c2b3ffc73e74a).
-The remaining Medium steps are:
+On 8 November 2026, the PNG was inserted in the
+[published Medium article](https://medium.com/@anthonycaban1010/what-happens-when-you-type-https-www-google-com-in-your-browser-and-press-enter-080383ce98f8)
+**after its second introductory paragraph, immediately before
+“1. The browser understands the address.”** The update was saved and published.
+The public article view loaded the image, caption, and descriptive alt text;
+all 44 original article text blocks matched their pre-edit values exactly.
 
-1. Edit the existing Medium article and insert the PNG **after its second
-   introductory paragraph, immediately before “1. The browser understands
-   the address.”** Keep all existing article text unchanged.
-2. Use this caption: *Illustrative DNS and HTTPS request flow, with TLS
-   termination and separate backend connections.* Add descriptive alt text,
-   publish the article update, and verify the image on the public article.
-3. Mark task 1 PASS only when the public image, one-line answer file, and
-   visible Medium insertion have all been verified. No private-checker result
-   is implied by those checks.
+Caption: *Illustrative DNS and HTTPS request flow, with TLS termination and
+separate backend connections.*
 
-Suggested alt text: “DNS returns an address to the browser. HTTPS over TCP
-443 passes through a firewall to a load balancer, where the browser's TLS
-session ends. Separate TLS connections link the web server, application
-server, and database. Reply arrows return the response to the browser.”
+Alt text: “DNS returns an address to the browser. HTTPS over TCP 443 passes
+through a firewall to a load balancer, where the browser’s TLS session ends.
+Separate TLS connections link the web server, application server, and database.
+Reply arrows return the response to the browser.”
+
+Medium placement was verified in the published page using the signed-in
+browser. An additional unauthenticated command-line request returned HTTP 403,
+so that separate retrieval method could not verify Medium. The GitHub PNG
+was independently verified without authentication. PASS covers the requested
+publication checks; it does not imply approval by the private checker or an
+intranet submission.
 
 ## Files
 
