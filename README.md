@@ -1,18 +1,16 @@
 # Holberton School — Network
 
-Ejercicios de fundamentos de redes de Holberton School. El repositorio reúne
-respuestas conceptuales y scripts Bash para practicar las herramientas de
-diagnóstico de Linux.
+Holberton School networking fundamentals coursework, including conceptual answers and Bash scripts for practicing Linux network diagnostics.
 
-## Módulos
+## Modules
 
-| Directorio | Contenido | Documentación |
+| Directory | Contents | Documentation |
 | --- | --- | --- |
-| [basics_0](./basics_0/) | Modelo OSI, tipos de red, direcciones MAC e IP, TCP, UDP, sockets y conectividad. | [README del módulo](./basics_0/README.md) |
-| [basics_1](./basics_1/) | Resolución local de nombres, direcciones IPv4 activas y escucha TCP en localhost. | [README del módulo](./basics_1/README.md) |
-| [What happens when...](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/) | Artículo en inglés sobre DNS, TCP/IP, seguridad y servidores al visitar Google. | [README del módulo](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md) |
+| [basics_0](./basics_0/) | OSI model, network types, MAC and IP addresses, TCP, UDP, sockets, and connectivity | [Module README](./basics_0/README.md) |
+| [basics_1](./basics_1/) | Local hostname resolution, active IPv4 addresses, and a localhost TCP listener | [Module README](./basics_1/README.md) |
+| [What happens when...](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/) | English article about DNS, TCP/IP, security, and servers when visiting Google | [Module README](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md) |
 
-## Estructura
+## Repository structure
 
 ```text
 holbertonschool-network/
@@ -36,72 +34,54 @@ holbertonschool-network/
     └── blog_post.md
 ```
 
-En `basics_0`, los archivos 0–3 contienen las respuestas numéricas del
-cuestionario y los archivos 4 y 5 son scripts Bash ejecutables, sin extensión.
-En `basics_1`, los tres scripts configuran la resolución local de nombres,
-muestran las IPv4 activas y reciben texto por TCP en el puerto 98 de localhost.
+In `basics_0`, files 0–3 contain numerical answers to coursework questions; files 4–5 are executable extensionless Bash scripts. In `basics_1`, three scripts configure local name resolution, list active IPv4 addresses, and receive text on localhost TCP port 98.
 
-## Objetivos de aprendizaje
+## Learning objectives
 
-- Identificar las capas del modelo OSI y distinguir LAN, WAN e Internet.
-- Comprender la función de las direcciones MAC e IP.
-- Reconocer las características de TCP y UDP.
-- Consultar sockets en escucha y comprobar respuestas ICMP con herramientas
-  de Linux.
-- Configurar asociaciones entre nombres e IP en un entorno de prácticas.
-- Enumerar las direcciones IPv4 activas y recibir texto mediante netcat.
+- Identify the OSI layers and distinguish LAN, WAN, and the Internet.
+- Explain MAC and IP addressing, TCP, UDP, and network sockets.
+- Inspect listening sockets and test ICMP responses with Linux tools.
+- Configure hostname-to-IP mappings in an isolated practice environment.
+- List active IPv4 addresses and receive data through netcat.
 
-## Primeros pasos
+## Getting started
 
-El entorno objetivo es **Ubuntu 22.04** con Bash y Git. Instala `net-tools`
-para disponer de `netstat` e `ifconfig`, `iputils-ping` para utilizar `ping`,
-`netcat-openbsd` para escuchar conexiones TCP y
-`shellcheck` para analizar los scripts:
+Target environment: **Ubuntu 22.04** with Bash and Git. Install `net-tools` for `netstat` and `ifconfig`, `iputils-ping` for `ping`, `netcat-openbsd` for TCP listening, and `shellcheck` for static analysis:
 
 ```bash
 sudo apt-get update
 sudo apt-get install net-tools iputils-ping netcat-openbsd shellcheck
-```
-
-Clona el repositorio y entra en el módulo:
-
-```bash
 git clone https://github.com/anthocab2/holbertonschool-network.git
 cd holbertonschool-network/basics_0
 ```
 
-## Uso
+## Usage
 
-Para las tareas **Change your home IP**, **Show attached IPs** y **Port
-listening on localhost**, consulta las instrucciones de
-[basics_1](./basics_1/README.md). La tarea 0 modifica `/etc/hosts` y se ejecuta
-en un entorno de prácticas aislado.
+For **Change your home IP**, **Show attached IPs**, and **Port listening on localhost**, see [basics_1](./basics_1/README.md). Task 0 edits `/etc/hosts` and should run only in an isolated practice environment.
 
-Desde `basics_0/`, consulta los sockets en escucha y su información de proceso:
+From `basics_0/`, inspect listening sockets and related processes:
 
 ```bash
 ./4-TCP_and_UDP_ports
 ```
 
-Solicita cinco envíos de ping a la interfaz de loopback:
+Send five pings to the loopback address:
 
 ```bash
 ./5-is_the_host_on_the_network 127.0.0.1
 ```
 
-Si ejecutas el segundo script sin argumentos, muestra el siguiente mensaje
-y no envía solicitudes:
+Without an argument, the second script prints a usage message without making a network request:
 
 ```text
 Usage: 5-is_the_host_on_the_network {IP_ADDRESS}
 ```
 
-Los puertos, procesos y tiempos de respuesta dependen del sistema. Algunos
-datos de procesos pueden requerir permisos adicionales para ser visibles.
+Reported ports, processes, and latency depend on the system. Some process details may require additional permissions.
 
-## Verificación
+## Recorded validation
 
-Desde `basics_0/`, comprueba la sintaxis y ejecuta el análisis estático:
+From `basics_0/`, check syntax and run static analysis:
 
 ```bash
 bash -n 4-TCP_and_UDP_ports
@@ -109,32 +89,16 @@ bash -n 5-is_the_host_on_the_network
 shellcheck 4-TCP_and_UDP_ports 5-is_the_host_on_the_network
 ```
 
-Los scripts se guardan en Git con permiso ejecutable (`100755`); las
-respuestas y los README usan `100644`. Todos los archivos de texto utilizan
-finales de línea LF y terminan con un salto de línea.
+Scripts are tracked as executable (`100755`); answers and README files use `100644`. Text files use LF line endings and end in a newline.
 
-La validación local incluyó sintaxis Bash, ShellCheck, ejecución real de
-`netstat`, el caso sin argumentos y cinco paquetes de ping enviados y
-recibidos en loopback. Se realizó en **Ubuntu 24.04.4 bajo WSL2**; Ubuntu 22.04
-es el entorno objetivo y no se ejecutó el checker privado de Holberton.
+The recorded local validation included Bash syntax, ShellCheck, actual `netstat` execution, the missing-argument case, and five successful loopback ping packets, on **Ubuntu 24.04.4 under WSL2**. Ubuntu 22.04 is the target environment; Holberton's private checker was not run.
 
-En `basics_1` también se comprobaron la resolución de nombres, la salida de
-IPv4 activas y la recepción exacta de texto en el puerto 98, con localhost
-resuelto a `127.0.0.1` y a `127.0.0.2`. Estas pruebas se realizaron en entornos
-aislados, sin cambiar los archivos de resolución ni las interfaces del equipo.
+In `basics_1`, tests also checked hostname resolution, active IPv4 output, and exact TCP receipt on port 98 with localhost resolving to `127.0.0.1` and `127.0.0.2`. Those checks ran in isolated environments without modifying the host machine's active name-resolution files or interfaces.
 
-Consulta los README de [basics_0](./basics_0/README.md) y
-[basics_1](./basics_1/README.md) para ver los ejercicios y sus comprobaciones.
+See the [basics_0](./basics_0/README.md) and [basics_1](./basics_1/README.md) READMEs for exercises and validation details.
 
 ## What happens when you visit Google?
 
-El [artículo en inglés](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/blog_post.md)
-explica los ocho temas requeridos para el proyecto y está
-[publicado en Medium](https://medium.com/@anthonycaban1010/what-happens-when-you-type-https-www-google-com-in-your-browser-and-press-enter-080383ce98f8).
-El archivo `0-blog_post` contiene su enlace público. Consulta el
-[README del módulo](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md)
-para los pasos de entrega.
+The [English article](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/blog_post.md) covers the eight required topics and is [published on Medium](https://medium.com/@anthonycaban1010/what-happens-when-you-type-https-www-google-com-in-your-browser-and-press-enter-080383ce98f8). The `0-blog_post` file contains its public URL; see the [module README](./what_happens_when_your_type_google_com_in_your_browser_and_press_enter/README.md) for submission instructions.
 
-## Mantenimiento
-
-Repositorio de [anthocab2](https://github.com/anthocab2).
+Maintained by [anthocab2](https://github.com/anthocab2).
